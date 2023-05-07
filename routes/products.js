@@ -3,11 +3,13 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Product = require('../models/Product.js');
 
-router.get('/', (req, res, next) => {
-    Product.find((err, products) => {
-        if (err) return next(err);
-        res.json(products);
-    })
+router.get('/', async (req, res, next) => {
+    // Product.find((err, products) => {
+    //     if (err) return next(err);
+    //     res.json(products);
+    // })
+    let products = await Product.find({});
+    res.json(products);
 })
 
 router.get('/:id', (req, res, next) => {
