@@ -5,10 +5,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
 const products = require('./routes/products');
+require('dotenv').config();
 
 mongoose.Promise = global.Promise;
+mongoose.set("strictQuery", false);
 
-mongoose.connect('mongodb+srv://admin:1234@cluster0.dniixbr.mongodb.net/?retryWrites=true&w=majority')
+const password = process.env.MONGODB_PW;
+mongoose.connect(`mongodb+srv://admin:${password}@cluster0.nxky1ov.mongodb.net/?retryWrites=true&w=majority`)
         .then(() => console.log('connection successfully!'))
         .catch((err) => console.error(err))
 
